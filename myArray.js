@@ -93,6 +93,8 @@ function main() {
   arr.pop();
   arr.pop();
 
+  // this will return NaN because our Memory class only accepts arrays of numbers
+  // (it is a Float64Array)
   arr.push('tauhida');
 
   console.log(`first element:      ${arr.get(0)}`);
