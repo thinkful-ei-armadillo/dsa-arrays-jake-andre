@@ -23,16 +23,17 @@ function greaterThanFive(arr) {
 }
 
 //7.
+// time complexity: O(n)
 // loop through array and add the pairs together
 function maxSum(arr){
-  let pair1=0;
-  let pair2=0;
-  let sum=0;
-  for(let i = 0; i< arr.length/2; i++){
-    pair1 = arr[i] + arr[i+1];
-    pair2 = arr[i+2] + arr[i+3];
-    sum = pair1 + pair2;
+  let currSum=0;
+  let maxSum=0;
+  for(let i =0; i<arr.length; i++){
+    let currNum = arr[i];
+    currSum = Math.max((currSum + currNum), 0);
+    maxSum = Math.max(currSum, maxSum);
   }
+  return maxSum;
 }
 
 //8.
@@ -73,9 +74,50 @@ function products(arr){
 
 }
 
-// console.log(urlify('tauhida parveen'));
-// console.log(urlify('www.thinkful.com /tauh ida parv een'));
-// console.log(greaterThanFive([1, 4, 5, 10, 11, 2]));
-// console.log(merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
-// console.log(remove('Battle of the Vowels: Hawaii vs. Grozny', ['a','e','i','o','u']));
+// 11.
+// time complexity: O(n)
+// cannot be simplified any further
+function arrayZero(arr) {
+  arr = arr.map(row => {
+    let foundZero = false;
+
+    row.forEach(num => {
+      if(num === 0) {
+        foundZero = true;
+        return true;
+      }
+    });
+
+    if(foundZero) {
+      return row.map(num => 0);
+    } else {
+      return row;
+    }
+  });
+
+  return arr;
+}
+
+// 12.
+// time complexity: O(n)
+function isRotation(str1, str2) {
+  return (str2 + str2).indexOf(str1) !== -1 ? true : false;
+}
+
+console.log(urlify('tauhida parveen'));
+console.log(urlify('www.thinkful.com /tauh ida parv een'));
+console.log(greaterThanFive([1, 4, 5, 10, 11, 2]));
+console.log(merge([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
+console.log(remove('Battle of the Vowels: Hawaii vs. Grozny', ['a','e','i','o','u']));
 console.log(products([1, 3, 9, 4]))
+let arr = [
+  [1,0,1,1,0],
+  [0,1,1,1,0],
+  [1,1,1,1,1],
+  [1,0,1,1,1],
+  [1,1,1,1,1]
+];
+console.log(arrayZero(arr));
+console.log(isRotation('amazon', 'azonam'));
+console.log(isRotation('amazon', 'azonma'));
+console.log(maxSum([4, 6, -3, 5, -2, 1]));
